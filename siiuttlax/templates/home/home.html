@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Bienvenido papu este es el SIIUTTLAX</h1>
+
+{% if user.is_authenticated %}
+    <h2>Que gusto de volver a tenerte aqui {{ user }}!</h2>
+
+    <ul>
+        <h1>Que tipo de usuario quieres agregar?</h1>
+        <li><a href="{% url 'academy:create_professor' %}">Docente</a></li>
+        <li><a href="{% url 'academy:create_student' %}">Estudiante</a></li>
+    </ul>
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Salir">
+    </form>
+
+    {% else %}
+    <a href="{% url 'login' %}">Iniciar sesión</a>
+
+{% endif %}
+{% endblock %}
